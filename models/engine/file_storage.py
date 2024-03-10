@@ -17,12 +17,14 @@ class FileStorage:
     Attributes:
         __file_path (str): name of the file to save objects to.
         __objects (dict): A dictionary of instantiated objects.
-    
+
     Methods:
         all(self) -> dict: returns all the objects in the FileStorage.
-        new(self, obj) -> None: sets in __objects obj with key <obj_class_name>.id
+        new(self, obj) -> None: sets in __objects obj with key
+            <obj_class_name>.id
         save(self) -> None: serializes __objects to the JSON file __file_path
-        reload(self) -> None: deserializes the JSON file __file_path to __objects
+        reload(self) -> None: deserializes the JSON file __file_path to
+            __objects
     """
     __file_path = "file.json"
     __objects = {}
@@ -36,7 +38,7 @@ class FileStorage:
     def new(self, obj):
         """
         A function to add a new object to the FileStorage __objects dictionary.
-        
+
         :param obj: The object to be added to the dictionary.
         :return: None
         """
@@ -54,11 +56,11 @@ class FileStorage:
 
     def reload(self):
         """
-        Reloads the objects from the JSON file if it exists, and populates
-        the FileStorage.__objects dictionary with the current session with the objects. 
-        If the file does not exist, the function returns without doing anything.
+        Reloads the objects from the JSON file if it exists, and populates the
+        FileStorage.__objects dictionary with the current session with objects
+        If the file does not exist, the function returns without doing anything
         """
-        
+
         try:
             with open(FileStorage.__file_path) as f:
                 objdict = json.load(f)
