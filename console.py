@@ -60,11 +60,11 @@ class HBNBCommand(cmd.Cmd):
         Default behavior for cmd module when input is invalid
         """
         argdict = {
-            "all": self.a_all,
-            "show": self.a_show,
-            "destroy": self.a_destroy,
-            "count": self.a_count,
-            "update": self.a_update
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
         }
         match = re.search(r"\.", arg)
         if match is not None:
@@ -78,17 +78,22 @@ class HBNBCommand(cmd.Cmd):
         print("*** Unknown syntax: {}".format(arg))
         return False
 
-    def a_quit(self, arg):
-        """Quit command to exit the program."""
+    def do_quit(self, arg):
+        """
+        Quit command to exit the program.
+        """
         return True
 
-    def a_EOF(self, arg):
-        """EOF signal to exit the program."""
+    def do_EOF(self, arg):
+        """
+        EOF signal to exit the program.
+        """
         print("")
         return True
 
-    def a_create(self, arg):
-        """Usage: create <class>
+    def do_create(self, arg):
+        """
+        Usage: create <class>
         Create a new class instance and print its id.
         """
         argl = parse(arg)
@@ -100,8 +105,9 @@ class HBNBCommand(cmd.Cmd):
             print(eval(argl[0])().id)
             storage.save()
 
-    def a_show(self, arg):
-        """Usage: show <class> <id> or <class>.show(<id>)
+    def do_show(self, arg):
+        """
+        Usage: show <class> <id> or <class>.show(<id>)
         Display the string representation of a class instance of a given id.
         """
         argl = parse(arg)
@@ -117,9 +123,11 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(objdict["{}.{}".format(argl[0], argl[1])])
 
-    def a_destroy(self, arg):
-        """Usage: destroy <class> <id> or <class>.destroy(<id>)
-        Delete a class instance of a given id."""
+    def do_destroy(self, arg):
+        """
+        Usage: destroy <class> <id> or <class>.destroy(<id>)
+        Delete a class instance of a given id.
+        """
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
@@ -134,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
             del objdict["{}.{}".format(argl[0], argl[1])]
             storage.save()
 
-    def a_all(self, arg):
+    def do_all(self, arg):
         """
         Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
@@ -152,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
                     objl.append(obj.__str__())
             print(objl)
 
-    def a_count(self, arg):
+    def do_count(self, arg):
         """
         Usage: count <class> or <class>.count()
         Retrieve the number of instances of a given class.
@@ -164,7 +172,7 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
         print(count)
 
-    def a_update(self, arg):
+    def do_update(self, arg):
         """
         Usage: update <class> <id> <attribute_name> <attribute_value> or
        <class>.update(<id>, <attribute_name>, <attribute_value>) or
