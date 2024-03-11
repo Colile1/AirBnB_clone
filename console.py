@@ -32,7 +32,7 @@ def parse(arg):
 
 
 class HBNBCommand(cmd.Cmd):
-    """Defines the HolbertonBnB command interpreter.
+    """Defines the ALXBnB command interpreter.
 
     Attributes:
         prompt (str): command prompt.
