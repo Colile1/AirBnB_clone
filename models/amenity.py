@@ -1,14 +1,11 @@
-#!/usr/bin/python3
-"""Amenity class."""
+#!/usr/bin/env python3
+"""Class Amenity """
+
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
     """
-    Represent an amenity.
-
-    Attributes:
-        name (str): name of the amenity.
+    Class Amenity
     """
-
     name = ""
