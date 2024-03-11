@@ -44,11 +44,11 @@ class BaseModel:
         including its created_at and updated_at timestamps.
         """
 
-        rdict = self.__dict__.copy()
-        rdict["created_at"] = self.created_at.isoformat()
-        rdict["updated_at"] = self.updated_at.isoformat()
-        rdict["__class__"] = self.__class__.__name__
-        return rdict
+        return_dict = self.__dict__.copy()
+        return_dict["created_at"] = self.created_at.isoformat()
+        return_dict["updated_at"] = self.updated_at.isoformat()
+        return_dict["__class__"] = self.__class__.__name__
+        return return_dict
 
     def __str__(self):
         """
