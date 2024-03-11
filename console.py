@@ -15,7 +15,7 @@ from models.review import Review
 
 def parse(arg):
     """
-    A function to parse a string and 
+    A function to parse a string and
     extract content within curly braces or brackets
     ReturnS: the parsed content as a list.
     """
