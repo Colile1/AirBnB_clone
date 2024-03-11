@@ -14,6 +14,11 @@ from models.review import Review
 
 
 def parse(arg):
+    """
+    A function to parse a string and 
+    extract content within curly braces or brackets
+    ReturnS: the parsed content as a list.
+    """
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:
@@ -32,7 +37,8 @@ def parse(arg):
 
 
 class HBNBCommand(cmd.Cmd):
-    """Defines the ALXBnB command interpreter.
+    """
+    Defines the HBnB command interpreter.
 
     Attributes:
         prompt (str): command prompt.
@@ -91,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
-    def do_create(self, arg):
+    def create(self, arg):
         """
         Usage: create <class>
         Create a new class instance and print its id.
@@ -102,8 +108,26 @@ class HBNBCommand(cmd.Cmd):
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            print(eval(argl[0])().id)
-            storage.save()
+            try:
+                cls = argl[0]
+                instance = eval(cls)()
+                if not instance:
+                    raise ValueError("Instance is null")
+                print(instance.id)
+            except Exception as e:
+                print("Exception: %s" % e)
+                instance = eval(argl[0])()
+                print(instance.id)
+            except AttributeError as ae:
+                print("AttributeError: %s" % ae)
+            except TypeError as te:
+                print("TypeError: %s" % te)
+            except ValueError as ve:
+                print("ValueError: %s" % ve)
+            except Exception as e:
+                print("Exception: %s" % e)
+            finally:
+                storage.save()
 
     def do_show(self, arg):
         """
@@ -121,7 +145,13 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(argl[0], argl[1]) not in objdict:
             print("** no instance found **")
         else:
-            print(objdict["{}.{}".format(argl[0], argl[1])])
+            try:
+                instance = objdict["{}.{}".format(argl[0], argl[1])]
+                if instance is None:
+                    raise ValueError("Null instance")
+                print(instance.__str__())
+            except Exception as e:
+                print("Exception: %s" % e)
 
     def do_destroy(self, arg):
         """
@@ -174,11 +204,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-        Usage: update <class> <id> <attribute_name> <attribute_value> or
-       <class>.update(<id>, <attribute_name>, <attribute_value>) or
-       <class>.update(<id>, <dictionary>)
-        Update a class instance of a given id by adding or updating
-        a given attribute key/value pair or dictionary.
+        Updates an object in the storage by parsing
+        the input argument and performing various checks
+        Returns False and prints error messages for
+        different cases of missing or invalid input.
         """
         argl = parse(arg)
         objdict = storage.all()
