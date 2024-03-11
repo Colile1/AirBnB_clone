@@ -105,13 +105,13 @@ class TestPlace_instantiation(unittest.TestCase):
 
     def test_two_places_different_created_at(self):
         pl1 = Place()
-        sleep(0.05)
+        sleep(0.1)
         pl2 = Place()
         self.assertLess(pl1.created_at, pl2.created_at)
 
     def test_two_places_different_updated_at(self):
         pl1 = Place()
-        sleep(0.05)
+        sleep(0.1)
         pl2 = Place()
         self.assertLess(pl1.updated_at, pl2.updated_at)
 
@@ -166,19 +166,19 @@ class TestPlace_save(unittest.TestCase):
 
     def test_one_save(self):
         pl = Place()
-        sleep(0.05)
+        sleep(0.1)
         first_updated_at = pl.updated_at
         pl.save()
         self.assertLess(first_updated_at, pl.updated_at)
 
     def test_two_saves(self):
         pl = Place()
-        sleep(0.05)
+        sleep(0.1)
         first_updated_at = pl.updated_at
         pl.save()
         second_updated_at = pl.updated_at
         self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
+        sleep(0.1)
         pl.save()
         self.assertLess(second_updated_at, pl.updated_at)
 

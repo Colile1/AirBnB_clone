@@ -33,6 +33,10 @@ class TestAmenity_instantiation(unittest.TestCase):
         self.assertEqual(datetime, type(Amenity().updated_at))
 
     def test_name_is_public_class_attribute(self):
+        """
+        Test if 'name' is a public class attribute 
+        and is a string of the Amenity class.
+        """
         am = Amenity()
         self.assertEqual(str, type(Amenity.name))
         self.assertIn("name", dir(Amenity()))
@@ -45,17 +49,21 @@ class TestAmenity_instantiation(unittest.TestCase):
 
     def test_two_amenities_different_created_at(self):
         am1 = Amenity()
-        sleep(0.05)
+        sleep(0.1)
         am2 = Amenity()
         self.assertLess(am1.created_at, am2.created_at)
 
     def test_two_amenities_different_updated_at(self):
         am1 = Amenity()
-        sleep(0.05)
+        sleep(0.1)
         am2 = Amenity()
         self.assertLess(am1.updated_at, am2.updated_at)
 
     def test_str_representation(self):
+        """
+        Test the string representation of the
+        Amenity class, checking various attributes.
+        """
         dt = datetime.today()
         dt_repr = repr(dt)
         am = Amenity()
@@ -72,7 +80,10 @@ class TestAmenity_instantiation(unittest.TestCase):
         self.assertNotIn(None, am.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        """instantiation with kwargs test method"""
+        """
+        Test instantiation with keyword arguments.
+        """
+
         dt = datetime.today()
         dt_iso = dt.isoformat()
         am = Amenity(id="345", created_at=dt_iso, updated_at=dt_iso)
@@ -107,19 +118,23 @@ class TestAmenity_save(unittest.TestCase):
 
     def test_one_save(self):
         am = Amenity()
-        sleep(0.05)
+        sleep(0.1)
         first_updated_at = am.updated_at
         am.save()
         self.assertLess(first_updated_at, am.updated_at)
 
     def test_two_saves(self):
+        """
+        Test the save method of the Amenity class by checking
+        if the updated_at attribute is updated properly.
+        """
         am = Amenity()
-        sleep(0.05)
+        sleep(0.1)
         first_updated_at = am.updated_at
         am.save()
         second_updated_at = am.updated_at
         self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
+        sleep(0.1)
         am.save()
         self.assertLess(second_updated_at, am.updated_at)
 
@@ -129,6 +144,10 @@ class TestAmenity_save(unittest.TestCase):
             am.save(None)
 
     def test_save_updates_file(self):
+        """
+        Test the save method to ensure
+        it updates the file correctly.
+        """
         am = Amenity()
         am.save()
         amid = "Amenity." + am.id
@@ -137,12 +156,18 @@ class TestAmenity_save(unittest.TestCase):
 
 
 class TestAmenity_to_dict(unittest.TestCase):
-    """Unittests for testing to_dict method of the Amenity class."""
+    """
+    Unittests for testing to_dict method of the Amenity class.
+    """
 
     def test_to_dict_type(self):
         self.assertTrue(dict, type(Amenity().to_dict()))
 
     def test_to_dict_contains_correct_keys(self):
+        """
+        Test if the to_dict method of Amenity class contains the
+        correct keys: id, created_at, updated_at, and __class__.
+        """
         am = Amenity()
         self.assertIn("id", am.to_dict())
         self.assertIn("created_at", am.to_dict())

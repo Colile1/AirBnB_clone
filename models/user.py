@@ -4,13 +4,18 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Represent a User.
+    """
+    Represent a User.
 
     Attributes:
-        email (str): email of the user.
-        password (str): password of the user.
-        first_name (str): first name of the user.
-        last_name (str): last name of the user.
+        email (str): User's email
+        password (str): User's password
+        first_name (str): User's first name
+        last_name (str): User's last name
+
+    Methods:
+        __str__(self)
+
     """
 
     email = ""
