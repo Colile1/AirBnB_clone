@@ -741,7 +741,7 @@ Write all unittests for console.py, all features!
 
 For testing the console, you should “intercept” STDOUT of it, we highly recommend you to use:
 
-with patch('sys.stdout', new=StringIO()) as f:
+with patch('sys.stdout', new=strio()) as f:
     HBNBCommand().onecmd("help show")
 Otherwise, you will have to re-write the console by replacing precmd by default.
 
