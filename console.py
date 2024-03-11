@@ -18,6 +18,9 @@ def parse(arg):
     A function to parse a string and
     extract content within curly braces or brackets
     ReturnS: the parsed content as a list.
+    Variables: arg (str)
+        retl (list): list of parsed content.
+
     """
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
@@ -145,13 +148,7 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(argl[0], argl[1]) not in objdict:
             print("** no instance found **")
         else:
-            try:
-                instance = objdict["{}.{}".format(argl[0], argl[1])]
-                if instance is None:
-                    raise ValueError("Null instance")
-                print(instance.__str__())
-            except Exception as e:
-                print("Exception: %s" % e)
+            print(objdict["{}.{}".format(argl[0], argl[1])])
 
     def do_destroy(self, arg):
         """
