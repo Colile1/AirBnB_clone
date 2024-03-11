@@ -175,6 +175,9 @@ class TestAmenity_to_dict(unittest.TestCase):
         self.assertIn("__class__", am.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
+        """
+        Test if to_dict contains added attributes.
+        """
         am = Amenity()
         am.middle_name = "Holberton"
         am.my_number = 98
