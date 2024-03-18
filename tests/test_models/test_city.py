@@ -1,129 +1,202 @@
 #!/usr/bin/python3
 """
-Contains the TestCityDocs classes
+Defines unit tests for models/city.py.
+
+Unit test classes:
+    TestCityInitialization
+    TestCitySave
+    TestCityToDictionary
 """
-
-from datetime import datetime
-import inspect
-from models import city
-from models.base_model import BaseModel
 import os
-import pep8
+import models
 import unittest
-from sqlalchemy.orm.attributes import InstrumentedAttribute
-City = city.City
+from datetime import datetime
+from time import sleep
+from models.city import City
 
 
-class TestCityDocs(unittest.TestCase):
-    """Tests to check the documentation and style of City class"""
+class TestCityInitialization(unittest.TestCase):
+    """
+    Unit testing Initialization of the City class.
+    """
+
+    def testNoArgumentsInitialization(self):
+        self.assertEqual(City, type(City()))
+
+    def testNewInstanceStoredInObjects(self):
+        self.assertIn(City(), models.storage.all().values())
+
+    def testIDIsPublicString(self):
+        self.assertEqual(str, type(City().id))
+
+    def testCreatedAtIsPublicDateTime(self):
+        self.assertEqual(datetime, type(City().created_at))
+
+    def testUpdatedAtIsPublicDateTime(self):
+        self.assertEqual(datetime, type(City().updated_at))
+
+    def testStateIsPublicClassAttr(self):
+        city = City()
+        self.assertEqual(str, type(City.state_id))
+        self.assertIn("state_id", dir(city))
+        self.assertNotIn("state_id", city.__dict__)
+
+    def testNameIsPublicClassAttr(self):
+        city = City()
+        self.assertEqual(str, type(City.name))
+        self.assertIn("name", dir(city))
+        self.assertNotIn("name", city.__dict__)
+
+    def testTwoCitiesUniqueIDs(self):
+        city1 = City()
+        city2 = City()
+        self.assertNotEqual(city1.id, city2.id)
+
+    def testTwoCitiesDifferentCreatedAt(self):
+        city1 = City()
+        sleep(0.05)
+        city2 = City()
+        self.assertLess(city1.created_at, city2.created_at)
+
+    def testTwoCitiesDiffUpdatedAt(self):
+        city1 = City()
+        sleep(0.05)
+        city2 = City()
+        self.assertLess(city1.updated_at, city2.updated_at)
+
+    def testStringRep(self):
+        dateTime = datetime.today()
+        dateTime_repr = repr(dateTime)
+        city = City()
+        city.id = "123456"
+        city.created_at = city.updated_at = dateTime
+        citystr = city.__str__()
+        self.assertIn("[City] (123456)", citystr)
+        self.assertIn("'id': '123456'", citystr)
+        self.assertIn("'created_at': " + dateTime_repr, citystr)
+        self.assertIn("'updated_at': " + dateTime_repr, citystr)
+
+    def testArgumenentsUnused(self):
+        city = City(None)
+        self.assertNotIn(None, city.__dict__.values())
+
+    def testInitializationWithKwargs(self):
+        dateTime = datetime.today()
+        dateTime_iso = dateTime.isoformat()
+        city = City(id="345", created_at=dateTime_iso, updated_at=dateTime_iso)
+        self.assertEqual(city.id, "345")
+        self.assertEqual(city.created_at, dateTime)
+        self.assertEqual(city.updated_at, dateTime)
+
+    def test_instantiation_with_None_kwargs(self):
+        with self.assertRaises(TypeError):
+            City(id=None, created_at=None, updated_at=None)
+
+
+class TestCitySave(unittest.TestCase):
+    """
+    Unit testing SAVE method of the City class.
+    """
+
     @classmethod
-    def setUpClass(cls):
-        """Set up for the doc tests"""
-        cls.city_f = inspect.getmembers(City, inspect.isfunction)
+    def setUp(self):
+        try:
+            os.rename("file.json", "tmp")
+        except IOError:
+            pass
 
-    def test_pep8_conformance_city(self):
-        """Test that models/city.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['models/city.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+    def tearDown(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
 
-    def test_pep8_conformance_test_city(self):
-        """Test that tests/test_models/test_city.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['tests/test_models/test_city.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-    def test_city_module_docstring(self):
-        """Test for the city.py module docstring"""
-        self.assertIsNot(city.__doc__, None,
-                         "city.py needs a docstring")
-        self.assertTrue(len(city.__doc__) >= 1,
-                        "city.py needs a docstring")
-
-    def test_city_class_docstring(self):
-        """Test for the City class docstring"""
-        self.assertIsNot(City.__doc__, None,
-                         "City class needs a docstring")
-        self.assertTrue(len(City.__doc__) >= 1,
-                        "City class needs a docstring")
-
-    def test_city_func_docstrings(self):
-        """Test for the presence of docstrings in City methods"""
-        for func in self.city_f:
-            self.assertIsNot(func[1].__doc__, None,
-                             "{:s} method needs a docstring".format(func[0]))
-            self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
-
-
-class TestCity(unittest.TestCase):
-    """Test the City class"""
-    def test_is_subclass(self):
-        """Test that City is a subclass of BaseModel"""
+    def testOneSave(self):
         city = City()
-        self.assertIsInstance(city, BaseModel)
-        self.assertTrue(hasattr(city, "id"))
-        self.assertTrue(hasattr(city, "created_at"))
-        self.assertTrue(hasattr(city, "updated_at"))
+        sleep(0.05)
+        first_updated_at = city.updated_at
+        city.save()
+        self.assertLess(first_updated_at, city.updated_at)
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
-                     "Testing DBStorage")
-    def test_name_attr(self):
-        """Test that City has attribute name, and it's an empty string"""
+    def testTwoSaves(self):
         city = City()
-        self.assertTrue(hasattr(city, "name"))
-        self.assertEqual(city.name, "")
+        sleep(0.05)
+        first_updated_at = city.updated_at
+        city.save()
+        second_updated_at = city.updated_at
+        self.assertLess(first_updated_at, second_updated_at)
+        sleep(0.05)
+        city.save()
+        self.assertLess(second_updated_at, city.updated_at)
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
-                     "Testing FileStorage")
-    def test_name_attr_db(self):
-        """Test for DBStorage name attribute"""
+    def testSaveWithArgs(self):
         city = City()
-        self.assertTrue(hasattr(City, "name"))
-        self.assertIsInstance(City.name, InstrumentedAttribute)
+        with self.assertRaises(TypeError):
+            city.save(None)
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
-                     "Testing DBStorage")
-    def test_state_id_attr(self):
-        """Test that City has attribute state_id, and it's an empty string"""
+    def testSaveUpdatesFile(self):
         city = City()
-        self.assertTrue(hasattr(city, "state_id"))
-        self.assertEqual(city.state_id, "")
+        city.save()
+        cityid = "City." + city.id
+        with open("file.json", "r") as f:
+            self.assertIn(cityid, f.read())
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
-                     "Testing FileStorage")
-    def test_state_id_attr_db(self):
-        """Test for DBStorage state_id attribute"""
+
+class TestCityToDictionary(unittest.TestCase):
+    """
+    Unit testing ToDictionary method of the City class.
+    """
+
+    def testToDictionaryType(self):
+        self.assertTrue(dict, type(City().to_dict()))
+
+    def testToDictionaryContainsCorrectKeys(self):
         city = City()
-        self.assertTrue(hasattr(City, "state_id"))
-        self.assertIsInstance(City.state_id, InstrumentedAttribute)
+        self.assertIn("id", city.to_dict())
+        self.assertIn("created_at", city.to_dict())
+        self.assertIn("updated_at", city.to_dict())
+        self.assertIn("__class__", city.to_dict())
 
-    def test_to_dict_creates_dict(self):
-        """test to_dict method creates a dictionary with proper attrs"""
-        c = City()
-        new_d = c.to_dict()
-        self.assertEqual(type(new_d), dict)
-        for attr in c.__dict__:
-            if attr is not "_sa_instance_state":
-                with self.subTest(attr=attr):
-                    self.assertTrue(attr in new_d)
-        self.assertTrue("__class__" in new_d)
-
-    def test_to_dict_values(self):
-        """test that values in dict returned from to_dict are correct"""
-        t_format = "%Y-%m-%dT%H:%M:%S.%f"
-        c = City()
-        new_d = c.to_dict()
-        self.assertEqual(new_d["__class__"], "City")
-        self.assertEqual(type(new_d["created_at"]), str)
-        self.assertEqual(type(new_d["updated_at"]), str)
-        self.assertEqual(new_d["created_at"], c.created_at.strftime(t_format))
-        self.assertEqual(new_d["updated_at"], c.updated_at.strftime(t_format))
-
-    def test_str(self):
-        """test that the str method has the correct output"""
+    def testToDictionaryContainsAddedAttributes(self):
         city = City()
-        string = "[City] ({}) {}".format(city.id, city.__dict__)
-        self.assertEqual(string, str(city))
+        city.middle_name = "Holberton"
+        city.my_number = 98
+        self.assertEqual("Holberton", city.middle_name)
+        self.assertIn("my_number", city.to_dict())
+
+    def testToDictionaryDateTimeAttrrtStrs(self):
+        city = City()
+        city_dict = city.to_dict()
+        self.assertEqual(str, type(city_dict["id"]))
+        self.assertEqual(str, type(city_dict["created_at"]))
+        self.assertEqual(str, type(city_dict["updated_at"]))
+
+    def testToDictionaryOutput(self):
+        dateTime = datetime.today()
+        city = City()
+        city.id = "123456"
+        city.created_at = city.updated_at = dateTime
+        tdict = {
+            'id': '123456',
+            '__class__': 'City',
+            'created_at': dateTime.isoformat(),
+            'updated_at': dateTime.isoformat(),
+        }
+        self.assertDictEqual(city.to_dict(), tdict)
+
+    def testContrastToDictionaryDunderDictionary(self):
+        city = City()
+        self.assertNotEqual(city.to_dict(), city.__dict__)
+
+    def testToDictionaryWithArg(self):
+        city = City()
+        with self.assertRaises(TypeError):
+            city.to_dict(None)
+
+
+if __name__ == "__main__":
+    unittest.main()
