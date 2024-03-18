@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Defines unittests for models/review.py.
-
 Unittest classes:
     TestReview_instantiation
     TestReview_save
@@ -57,13 +56,13 @@ class TestReview_instantiation(unittest.TestCase):
 
     def test_two_reviews_different_created_at(self):
         rv1 = Review()
-        sleep(0.1)
+        sleep(0.05)
         rv2 = Review()
         self.assertLess(rv1.created_at, rv2.created_at)
 
     def test_two_reviews_different_updated_at(self):
         rv1 = Review()
-        sleep(0.1)
+        sleep(0.05)
         rv2 = Review()
         self.assertLess(rv1.updated_at, rv2.updated_at)
 
@@ -118,19 +117,19 @@ class TestReview_save(unittest.TestCase):
 
     def test_one_save(self):
         rv = Review()
-        sleep(0.1)
+        sleep(0.05)
         first_updated_at = rv.updated_at
         rv.save()
         self.assertLess(first_updated_at, rv.updated_at)
 
     def test_two_saves(self):
         rv = Review()
-        sleep(0.1)
+        sleep(0.05)
         first_updated_at = rv.updated_at
         rv.save()
         second_updated_at = rv.updated_at
         self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.1)
+        sleep(0.05)
         rv.save()
         self.assertLess(second_updated_at, rv.updated_at)
 

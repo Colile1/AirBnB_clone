@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Defines unittests for models/city.py.
-
 Unittest classes:
     TestCity_instantiation
     TestCity_save
@@ -51,13 +50,13 @@ class TestCity_instantiation(unittest.TestCase):
 
     def test_two_cities_different_created_at(self):
         cy1 = City()
-        sleep(0.1)
+        sleep(0.05)
         cy2 = City()
         self.assertLess(cy1.created_at, cy2.created_at)
 
     def test_two_cities_different_updated_at(self):
         cy1 = City()
-        sleep(0.1)
+        sleep(0.05)
         cy2 = City()
         self.assertLess(cy1.updated_at, cy2.updated_at)
 
@@ -112,19 +111,19 @@ class TestCity_save(unittest.TestCase):
 
     def test_one_save(self):
         cy = City()
-        sleep(0.1)
+        sleep(0.05)
         first_updated_at = cy.updated_at
         cy.save()
         self.assertLess(first_updated_at, cy.updated_at)
 
     def test_two_saves(self):
         cy = City()
-        sleep(0.1)
+        sleep(0.05)
         first_updated_at = cy.updated_at
         cy.save()
         second_updated_at = cy.updated_at
         self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.1)
+        sleep(0.05)
         cy.save()
         self.assertLess(second_updated_at, cy.updated_at)
 

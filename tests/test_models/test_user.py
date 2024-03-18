@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Defines unittests for models/user.py.
-
 Unittest classes:
     TestUser_instantiation
     TestUser_save
@@ -51,13 +50,13 @@ class TestUser_instantiation(unittest.TestCase):
 
     def test_two_users_different_created_at(self):
         us1 = User()
-        sleep(0.1)
+        sleep(0.05)
         us2 = User()
         self.assertLess(us1.created_at, us2.created_at)
 
     def test_two_users_different_updated_at(self):
         us1 = User()
-        sleep(0.1)
+        sleep(0.05)
         us2 = User()
         self.assertLess(us1.updated_at, us2.updated_at)
 
@@ -112,19 +111,19 @@ class TestUser_save(unittest.TestCase):
 
     def test_one_save(self):
         us = User()
-        sleep(0.1)
+        sleep(0.05)
         first_updated_at = us.updated_at
         us.save()
         self.assertLess(first_updated_at, us.updated_at)
 
     def test_two_saves(self):
         us = User()
-        sleep(0.1)
+        sleep(0.05)
         first_updated_at = us.updated_at
         us.save()
         second_updated_at = us.updated_at
         self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.1)
+        sleep(0.05)
         us.save()
         self.assertLess(second_updated_at, us.updated_at)
 
