@@ -13,7 +13,7 @@ import models
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
-from models.engine.FileStorage import FileStorage
+from models.engine.file_storage import FileStorage
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review

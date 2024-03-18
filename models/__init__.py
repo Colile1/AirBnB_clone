@@ -3,7 +3,7 @@
 __init__ constructor method to create a new instance of models directory
 and initialized object's attributes.
 """
-from models.engine.FileStorage import FileStorage
+from models.engine.file_storage import FileStorage
 
 
 storage = FileStorage()
