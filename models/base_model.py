@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines all common attributes/methods
+"""Defines all common attributes and methods
 for other classes in the tests package."""
 import models
 from uuid import uuid4
@@ -13,15 +13,15 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """
-    	Initialize the object with optional arguments.
-    	
-    	Parameters:
-    	*args: Variable length argument list.
-    	**kwargs: Arbitrary keyword arguments.
-        
-    	Returns:
-    	None
-    	"""
+        Initializes the object with optional arguments
+
+        Parameters:
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+        None
+        """
         tform = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
         self.created_at = datetime.today()

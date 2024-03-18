@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""Defines the FileStorage class."""
+"""
+Serializes instances to a JSON file and
+deserializes JSON file to instances.
+"""
+
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -11,7 +15,8 @@ from models.review import Review
 
 
 class FileStorage:
-    """Represent an abstracted storage engine.
+    """
+    A class that serialize and deserialize instances to a JSON file
     Attributes:
         __file_path (str): The name of the file to save objects to.
         __objects (dict): A dictionary of instantiated objects.
@@ -20,7 +25,10 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """Return the dictionary __objects."""
+        """
+        A method that returns all objects stored in the FileStorage instance.
+        """
+
         return FileStorage.__objects
 
     def new(self, obj):
@@ -29,14 +37,33 @@ class FileStorage:
         FileStorage.__objects["{}.{}".format(ocname, obj.id)] = obj
 
     def save(self):
-        """Serialize __objects to the JSON file __file_path."""
+        """
+        Saves the current state of the objects to a file.
+
+        This function serializes the current state of the objects
+        stored in the `__objects` dictionary and writes it to a file
+        specified by the `__file_path` attribute. The serialization process
+        converts the objects into a dictionary format using the `to_dict()`
+        method of each object. The resulting dictionary is then
+        written to the file in JSON format using the `json.dump()` function.
+
+        Parameters:
+            self (FileStorage): The current instance of the `FileStorage` class
+
+        Returns:
+            None
+        """
+
         odict = FileStorage.__objects
         objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
         with open(FileStorage.__file_path, "w") as f:
             json.dump(objdict, f)
 
     def reload(self):
-        """Deserialize the JSON file __file_path to __objects, if it exists."""
+        """
+        Method to reload objects from a JSON file into the current session.
+        """
+
         try:
             with open(FileStorage.__file_path) as f:
                 objdict = json.load(f)
