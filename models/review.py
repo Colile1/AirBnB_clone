@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Defines the Review class.
-"""
+"""Defines the Review class."""
 from models.base_model import BaseModel
 
 
@@ -12,7 +10,7 @@ class Review(BaseModel):
     Attributes:
         place_id (str): Place id.
         user_id (str): User id.
-        text (str): Review data input by the user.
+        text (str): text of the review.
     """
 
     place_id = ""

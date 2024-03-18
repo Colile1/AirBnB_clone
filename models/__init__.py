@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-"""
-__init__ constructor method to create a new instance of models directory
-and initialized object's attributes.
-"""
+"""FileStorage module"""
+
 from models.engine.file_storage import FileStorage
 
 
