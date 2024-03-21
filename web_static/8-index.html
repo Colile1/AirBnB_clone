@@ -1,106 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AirBnB clone</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles/4-common.css">
     <link rel="stylesheet" type="text/css" href="styles/3-header.css">
     <link rel="stylesheet" type="text/css" href="styles/3-footer.css">
     <link rel="stylesheet" type="text/css" href="styles/6-filters.css">
     <link rel="stylesheet" type="text/css" href="styles/8-places.css">
-    <link rel="icon" href="images/icon.png" type="image/png">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <link rel="icon" type="image/png" href="./images/icon_group.png">
+    <link rel="icon" type="image/png" href="./images/icon_bed.png">
+    <link rel="icon" type="image/png" href="./images/icon_bath.png">
+    <title>Airbnb Clone</title>
   </head>
   <body>
-    <header></header>
-    <section class="filters">
-      <div class="locations">
-        <h3>States</h3>
-        <h4>Gauteng, Arizona...  </h4>
-        <ul class="popover">
-          <li>
-            <h2>Arizona:</h2>
-          </li>
-          <li>
-            <ul>
-              <li>Phoenix</li>
-              <li>Tucson</li>
-            </ul>
-          </li>
-          <li>
-            <h2>Gauteng:</h2>
-          </li>
-          <li>
-            <ul>
-              <li>Johanesburg</li>
-              <li>Pretoria</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="amenities">
-        <h3>Amenities</h3>
-        <h4>Internet, Kitchen...</h4>
-        <ul class="popover">
-          <li>Internet</li>
-          <li>TV</li>
-          <li>Kitchen</li>
-          <li>Gym</li>
-        </ul>
-      </div>
-      <button>Search</button>
-    </section>
-    <section class="places">
-      <h1>Places</h1>
-      <ul>
-        <li>
-          <article>
-            <h2>My Home</h2>
-            <div class="price_by_night">$80</div>
-            <div class="information">
-              <div class="max_guest">2 Guests</div>
-              <div class="number_rooms">1 Bedroom</div>
-              <div class="number_bathrooms">1 Bathroom</div>
-            </div>
-            <div class="user">Owner: John Doe</div>
-            <div class="description">
-              Cozy retreat for two! This charming accommodation offers a comfortable stay for 2 guests. With 1 bedroom and 1 bathroom, enjoy a peaceful night's sleep in a welcoming atmosphere. Priced at $80 per night, it's the perfect spot for a romantic getaway.
-            </div>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h2>Tiny House</h2>
-            <div class="price_by_night">$65</div>
-            <div class="information">
-              <div class="max_guest">4 Guests</div>
-              <div class="number_rooms">2 Bedrooms</div>
-              <div class="number_bathrooms">1 Bathroom</div>
-            </div>
-            <div class="user">Owner: Maxi Priest</div>
-            <div class="description">
-              Spacious home for a group of four! Ideal for friends or family, this retreat accommodates 4 guests with 2 bedrooms and 1 bathroom. At $65 per night, it provides a cozy and inviting space for a memorable stay.
-            </div>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h2>A Suite</h2>
-            <div class="price_by_night">$190</div>
-            <div class="information">
-              <div class="max_guest">6 Guests</div>
-              <div class="number_rooms">3 Bedrooms</div>
-              <div class="number_bathrooms">2 Bathrooms</div>
-            </div>
-            <div class="user">Owner: Jane Doe</div>
-            <div class="description">
-              Luxurious escape for six! Indulge in a premium experience with this spacious accommodation designed for 6 guests. Featuring 3 bedrooms and 2 bathrooms, this elegant retreat offers comfort and style at $190 per night. Unwind and create lasting memories in this upscale setting.
-            </div>
-          </article>
-        </li>
-      </ul>
-    </section>
-  </div>
-  <footer>
-    <p>Best School</p>
-  </footer>
-</body>
+    <header>
+    </header>
+    <div class="container">
+      <section class="filters">
+	      <div class="locations">
+	        <h3>States</h3>
+          <h4>California, Arizona...</h4>
+          <ul class="popover">
+            <li><h2>Arizona:</h2>
+              <ul>
+                <li>Page</li>
+                <li>Page2</li>
+              </ul>
+            </li>
+            <li><h2>California:</h2>
+              <ul>
+                <li>San Francisco</li>
+                <li> Los Altos</li>
+              </ul>
+          </ul>
+        </div>
+        <div class="amenities">
+          <h3>Amenities</h3>
+          <h4>Internet, Kitchen...</h4>
+          <ul class="popover">
+            <li>Internet</li>
+            <li>TV<li>
+            <li>Kitchen</li>
+            <li>Iron</li>
+          </ul>
+        </div>
+	      <button>Search</button>
+      </section>
+      <section class="places">
+	      <h1>Places</h1>
+        <article>
+          <h2>My home</h2>
+          <div class="price_by_night">$80</div>
+          <div class="information">
+            <div class="max_guest">2 guests</div>
+            <div class="number_rooms">1 bedroom</div>
+            <div class="number_bathrooms">1 bathroom</div>
+          </div>
+          <div class="user"><strong>Owner:</strong> John Doe</div>
+          <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+	      </article>
+        <article><h2>Tiny house</h2>
+          <div class="price_by_night">$50</div>
+          <div class="information">
+            <div class="max_guest">1 guest</div>
+            <div class="number_rooms">1 bedroom</div>
+            <div class="number_bathrooms">1 bathroom</div>
+          </div>
+          <div class="user"><strong>Owner:</strong> Jake Obi</div>
+          <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </article>
+        <article><h2>A suite</h2>
+          <div class="price_by_night">$160</div>
+          <div class="information">
+            <div class="max_guest">2 guests</div>
+            <div class="number_rooms">1 bedroom</div>
+            <div class="number_bathrooms">2 bathrooms</div>
+          </div>
+          <div class="user"><strong>Owner:</strong> Jess Hassan</div>
+          <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </article>
+      </section>
+    </div>
+    <footer>
+      Best School
+    </footer>
+  </body>
 </html>
