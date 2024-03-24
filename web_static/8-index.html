@@ -1,89 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles/4-common.css">
-    <link rel="stylesheet" type="text/css" href="styles/3-header.css">
-    <link rel="stylesheet" type="text/css" href="styles/3-footer.css">
-    <link rel="stylesheet" type="text/css" href="styles/6-filters.css">
-    <link rel="stylesheet" type="text/css" href="styles/8-places.css">
-    <link rel="icon" type="image/png" href="./images/icon.png">
-    <link rel="icon" type="image/png" href="./images/icon_group.png">
-    <link rel="icon" type="image/png" href="./images/icon_bed.png">
-    <link rel="icon" type="image/png" href="./images/icon_bath.png">
-    <title>Airbnb Clone</title>
-  </head>
-  <body>
-    <header>
-    </header>
-    <div class="container">
-      <section class="filters">
-	      <div class="locations">
-	        <h3>States</h3>
-          <h4>California, Arizona...</h4>
-          <ul class="popover">
-            <li><h2>Arizona:</h2>
-              <ul>
-                <li>Page</li>
-                <li>Page2</li>
-              </ul>
-            </li>
-            <li><h2>California:</h2>
-              <ul>
-                <li>San Francisco</li>
-                <li> Los Altos</li>
-              </ul>
-          </ul>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles/4-common.css">
+  <link rel="stylesheet" type="text/css" href="styles/3-header.css">
+  <link rel="stylesheet" type="text/css" href="styles/3-footer.css">
+  <link rel="stylesheet" type="text/css" href="styles/6-filters.css">
+  <link rel="stylesheet" type="text/css" href="styles/8-places.css">
+  <link rel="icon" type="image/png" href="./images/icon.png">
+  <link rel="icon" type="image/png" href="./images/icon_group.png">
+  <link rel="icon" type="image/png" href="./images/icon_bed.png">
+  <link rel="icon" type="image/png" href="./images/icon_bath.png">
+  <title>Airbnb Clone</title>
+</head>
+
+<body>
+  <header>
+  </header>
+  <div class="container">
+    <section class="filters">
+      <div class="locations">
+        <h3>States</h3>
+        <h4>Limpopo, Free State...</h4>
+        <ul class="popover">
+          <li>
+            <h2>Gauteng:</h2>
+            <ul>
+              <li>Johanesburg</li>
+              <li>Pretoria</li>
+            </ul>
+          </li>
+          <li>
+            <h2>KZN: </h2>
+            <ul>
+              <li>Durban</li>
+              <li>Umlazi</li>
+            </ul>
+        </ul>
+      </div>
+      <div class="amenities">
+        <h3>Amenities</h3>
+        <h4>Water, Electricity..</h4>
+        <ul class="popover">
+          <li>Internet</li>
+          <li>TV</li>
+          <li>Parking</li>
+          <li>Iron</li>
+        </ul>
+      </div>
+      <button>Search</button>
+    </section>
+    <section class="places">
+      <h1>Places</h1>
+      <article>
+        <h2>My home</h2>
+        <div class="price_by_night">$80</div>
+        <div class="information">
+          <div class="max_guest">2 guests</div>
+          <div class="number_rooms">1 bedroom</div>
+          <div class="number_bathrooms">1 bathroom</div>
         </div>
-        <div class="amenities">
-          <h3>Amenities</h3>
-          <h4>Internet, Kitchen...</h4>
-          <ul class="popover">
-            <li>Internet</li>
-            <li>TV<li>
-            <li>Kitchen</li>
-            <li>Iron</li>
-          </ul>
+        <div class="user"><strong>Owner:</strong> Coile Sibanda </div>
+        <div class="description">
+          Enjoy a comfortable and spacious studio apartment located in the heart of Joburg.
+          Our apartment is a great base for exploring the city. The apartment is decorated
+          with modern furniture and has a fully equipped kitchen. We have a flat screen TV
+          and a large bed for a comfortable night's sleep. The apartment is located in a quiet
+          street with plenty of parking. The nearest mall is only a 10 minute walk away.
+          The studio is also pet friendly.
         </div>
-	      <button>Search</button>
-      </section>
-      <section class="places">
-	      <h1>Places</h1>
-        <article>
-          <h2>My home</h2>
-          <div class="price_by_night">$80</div>
-          <div class="information">
-            <div class="max_guest">2 guests</div>
-            <div class="number_rooms">1 bedroom</div>
-            <div class="number_bathrooms">1 bathroom</div>
-          </div>
-          <div class="user"><strong>Owner:</strong> John Doe</div>
-          <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-	      </article>
-        <article><h2>Tiny house</h2>
-          <div class="price_by_night">$50</div>
-          <div class="information">
-            <div class="max_guest">1 guest</div>
-            <div class="number_rooms">1 bedroom</div>
-            <div class="number_bathrooms">1 bathroom</div>
-          </div>
-          <div class="user"><strong>Owner:</strong> Jake Obi</div>
-          <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        </article>
-        <article><h2>A suite</h2>
-          <div class="price_by_night">$160</div>
-          <div class="information">
-            <div class="max_guest">2 guests</div>
-            <div class="number_rooms">1 bedroom</div>
-            <div class="number_bathrooms">2 bathrooms</div>
-          </div>
-          <div class="user"><strong>Owner:</strong> Jess Hassan</div>
-          <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        </article>
-      </section>
-    </div>
-    <footer>
-      Best School
-    </footer>
-  </body>
+      </article>
+      <article>
+        <h2>Tiny house</h2>
+        <div class="price_by_night">$50</div>
+        <div class="information">
+          <div class="max_guest">1 guest</div>
+          <div class="number_rooms">1 bedroom</div>
+          <div class="number_bathrooms">1 bathroom</div>
+        </div>
+        <div class="user"><strong>Owner:</strong> Colile Sibanda </div>
+        <div class="description">
+          This tiny house is perfect for a solo traveler looking to explore the city. At just 300 square feet, it packs
+          in everything you need for a comfortable stay with a cozy lofted bed, a kitchenette with a mini fridge and
+          stovetop, and a full bathroom. The high ceilings and abundance of windows make it feel spacious and airy. It's
+          walking distance to downtown attractions, restaurants, and parks. The neighborhood is quiet and friendly.
+          You'll love coming home to this charming tiny house after a day out exploring!
+
+        </div>
+      </article>
+      <article>
+        <h2>A suite</h2>
+        <div class="price_by_night">$160</div>
+        <div class="information">
+          <div class="max_guest">2 guests</div>
+          <div class="number_rooms">1 bedroom</div>
+          <div class="number_bathrooms">2 bathrooms</div>
+        </div>
+        <div class="user"><strong>Owner:</strong> Colile Sibanda </div>
+        <div class="description">
+          This cozy Airbnb suite features a fully-equipped kitchen, a comfortable
+          living room with a couch and a flat-screen TV, and a spacious bedroom with
+          an en-suite bathroom. It's the perfect place to stay if you want to be
+          centrally located and have all the amenities you need without sacrificing
+          privacy. The apartment is clean, comfortable, and has everything you
+          need for a comfortable stay.
+        </div>
+      </article>
+
+    </section>
+  </div>
+  <footer>
+    Best School
+  </footer>
+</body>
+
 </html>
